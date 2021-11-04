@@ -1,0 +1,9 @@
+﻿{
+  "UserConfig": { 
+      "UUIDs": ["12343", "555"]
+    },
+  
+  "FileConfig": {
+    "OutputFile": "data.txt"
+  }
+}
