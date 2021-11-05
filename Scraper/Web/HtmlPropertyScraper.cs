@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HouseScraper.Config;
-using HouseScraper.Scraper.Checker;
 using HouseScraper.Scraper.ScrapeItems;
 using HouseScraper.Web;
 using HtmlAgilityPack;
