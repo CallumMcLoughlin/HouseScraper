@@ -3,6 +3,13 @@
       "UUIDs": ["12343", "555"]
     },
   
+  "WebConfig" : {
+    "Url": "myurlhere",
+    "Pageable": true,
+    "PaginationValue": "&page=",
+    "Polltime": 120
+  },
+  
   "FileConfig": {
     "OutputFile": "data.txt"
   }

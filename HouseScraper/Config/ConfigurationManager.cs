@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HouseScraper.Events;
 
 namespace HouseScraper.Config
 {
@@ -23,7 +24,8 @@ namespace HouseScraper.Config
             }
             
             config = Configuration.GetConfig<T>();
-            _settings[typeof(T)] = config;
+
+            _settings[typeof(T)] = config ?? throw new ConfigException($"Missing configuration value for type {typeof(T).Name}");
             return (T) config;
         }
     }
