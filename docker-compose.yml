@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  scraper:
+    image: housescraper:latest
+    container_name: housescraper
+    restart: unless-stopped
+    volumes:
+      - ./settings.json:/app/net5.0/settings.json
+      - ./data.txt:/app/net5.0/data.txt
