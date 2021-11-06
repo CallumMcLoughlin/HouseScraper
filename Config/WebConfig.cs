@@ -1,11 +1,16 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace HouseScraper.Config
 {
+    [Serializable]
     public class WebConfig : IConfig
     {
         [JsonPropertyName("Url")] 
         public string Url { get; set; }
+        
+        [JsonPropertyName("BaseUrl")] 
+        public string BaseUrl { get; set; }
         
         [JsonPropertyName("Pageable")] 
         public bool Pageable { get; set; }

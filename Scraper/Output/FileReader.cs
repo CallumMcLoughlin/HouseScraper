@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace HouseScraper.Scraper.Web
+﻿namespace HouseScraper.Scraper.Output
 {
     public class FileReader : IReader<string[]>
     {
@@ -9,15 +7,15 @@ namespace HouseScraper.Scraper.Web
         public FileReader(string filepath)
         {
             _filepath = filepath;
-            if (!File.Exists(_filepath))
+            if (!System.IO.File.Exists(_filepath))
             {
-                using (File.Create(_filepath)) { }
+                using (System.IO.File.Create(_filepath)) { }
             }
         }
 
         public string[] ReadAllLines()
         {
-            return File.ReadAllLines(_filepath);
+            return System.IO.File.ReadAllLines(_filepath);
         }
     }
 }

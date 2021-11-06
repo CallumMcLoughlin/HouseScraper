@@ -1,7 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace HouseScraper.Config
 {
+    [Serializable]
     public class FileConfig : IConfig
     {
         [JsonPropertyName("OutputFile")]

@@ -20,8 +20,6 @@ namespace HouseScraper.Scraper.Web
 
         public List<Property> Scrape()
         {
-            _config.Pageable = false;
-
             if (_config.Pageable)
             {
                 int currentPage = 1;
@@ -41,9 +39,7 @@ namespace HouseScraper.Scraper.Web
             }
             else
             {
-                HtmlDocument document = new HtmlDocument();
-                document.LoadHtml(File.ReadAllText("out.txt"));
-                //HtmlDocument document = _htmlViewer.Load(_config.Url);
+                HtmlDocument document = _htmlViewer.Load(_config.Url);
                 return GetProperties(document);
             }
         }
@@ -61,6 +57,12 @@ namespace HouseScraper.Scraper.Web
         private Property ParseHtmlNode(HtmlNode node)
         {
             string url = node.ChildNodes.FindFirst("a").GetAttributeValue("href", string.Empty);
+            if (url != string.Empty)
+            {
+                url = _config.BaseUrl + url;
+            }
+
+            string imageUrl = node.ChildNodes.FindFirst("picture")?.ChildNodes.FindFirst("img")?.GetAttributeValue("src", string.Empty);
             string title = node.ChildNodes.FindFirst("tm-property-search-card-listing-title").InnerText;
             string bedAndBath = node.ChildNodes.FindFirst("tm-property-search-card-attribute-icons").InnerText;
             string beds = bedAndBath.Split(' ')[1];
@@ -69,7 +71,7 @@ namespace HouseScraper.Scraper.Web
 
             List<string> values = new List<string>()
             {
-                url, title, beds, baths, price
+                url, imageUrl, title, beds, baths, price
             };
             
             return _factory.FromStringList(values);

@@ -8,6 +8,9 @@ namespace HouseScraper.Scraper.ScrapeItems
     {
         [JsonPropertyName("Url")]
         public string Url { get; set; }
+
+        [JsonPropertyName("ImageUrl")]
+        public string ImageUrl { get; set; }
         
         [JsonPropertyName("PropertyTitle")]
         public string PropertyTile { get; set; }
@@ -23,9 +26,10 @@ namespace HouseScraper.Scraper.ScrapeItems
 
         public Property() { }
         
-        public Property(string url, string title, string bedrooms, string bathrooms, string cost)
+        public Property(string url, string imageUrl, string title, string bedrooms, string bathrooms, string cost)
         {
             Url = url;
+            ImageUrl = imageUrl;
             PropertyTile = title;
             Bedrooms = bedrooms;
             Bathrooms = bathrooms;

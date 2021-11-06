@@ -4,13 +4,19 @@
     },
   
   "WebConfig" : {
-    "Url": "myurlhere",
+    "Url": "https://www.trademe.co.nz/a/property/residential/rent/canterbury/christchurch-city/search?suburb=2505&suburb=2212&suburb=2101&suburb=2165&suburb=1993&suburb=3454&suburb=2177&bedrooms_min=3",
+    "BaseUrl": "https://www.trademe.co.nz/a/",
     "Pageable": true,
     "PaginationValue": "&page=",
-    "Polltime": 120
+    "Polltime": 7200
   },
   
   "FileConfig": {
     "OutputFile": "data.txt"
+  },
+  
+  "DiscordConfig": {
+    "DiscordToken": "abcdef",
+    "ChannelId": 12345
   }
 }
