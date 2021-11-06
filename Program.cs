@@ -1,5 +1,4 @@
 ﻿using System;
-using Discord.WebSocket;
 using HouseScraper.Discord;
 using HouseScraper.Events.Scraper;
 using HouseScraper.Scraper.Checker;
@@ -24,6 +23,7 @@ namespace HouseScraper
 
         private static void OnNewProperty(object sender, PropertyFoundEventArgs eventArgs)
         {
+            Console.WriteLine(eventArgs.Property.PropertyTile);
             Bot.SendProperty(eventArgs.Property)
                 .GetAwaiter()
                 .GetResult();
