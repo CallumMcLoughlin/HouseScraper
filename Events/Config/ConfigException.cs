@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HouseScraper.Events
+namespace HouseScraper.Events.Config
 {
     [Serializable]
     public class ConfigException : Exception

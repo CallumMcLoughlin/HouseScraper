@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using HouseScraper.Checker;
 using HouseScraper.Config;
-using HouseScraper.Events;
+using HouseScraper.Events.Scraper;
 using HouseScraper.Scraper.ScrapeItems;
-using HouseScraper.Web;
+using HouseScraper.Scraper.Web;
 
 namespace HouseScraper.Scraper.Checker
 {
@@ -14,26 +13,32 @@ namespace HouseScraper.Scraper.Checker
         public event EventHandler<PropertyFoundEventArgs> NewPropertyEvent;
         private Timer _eventTimer;
         
-        private readonly WebConfig _config;
+        private readonly WebConfig _webConfig = ConfigurationManager.Instance.GetConfig<WebConfig>();
+        private readonly FileConfig _fileConfig = ConfigurationManager.Instance.GetConfig<FileConfig>();
         
         private readonly IScraper<List<Property>> _scraper;
-        private readonly IReader<string[]> _reader;
+        private readonly IReader<List<Property>> _reader;
+        private readonly IWriter<List<Property>> _writer;
+
+        private readonly List<Property> _properties = new List<Property>();
         private readonly HashSet<string> _propertyLookup = new HashSet<string>();
         
-        public PropertyChecker(IScraper<List<Property>> propertyScraper, IReader<string[]> reader)
+        public PropertyChecker(IScraper<List<Property>> propertyScraper)
         {
-            _config = ConfigurationManager.Instance.GetConfig<WebConfig>();
             _scraper = propertyScraper;
-            _reader = reader;
+            _reader = new JsonFileReader(_fileConfig.OutputFile);
+            _writer = new JsonFileWriter(_fileConfig.OutputFile);
             
             Initialize();
         }
 
         private void Initialize()
         {
-            foreach (string line in _reader.ReadAllLines())
+            _properties.AddRange(_reader.ReadAllLines());
+            
+            foreach (Property property in _properties)
             {
-//                _propertyLookup.Add(line);
+                _propertyLookup.Add(property.PropertyTile);
             }
         }
 
@@ -42,7 +47,7 @@ namespace HouseScraper.Scraper.Checker
             _eventTimer = new Timer(e =>
             {
                 OnLoop();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(_config.Polltime));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(_webConfig.Polltime));
         }
 
         protected override void OnLoop()
@@ -56,10 +61,13 @@ namespace HouseScraper.Scraper.Checker
                     {
                         Property = scrapedProperty
                     };
+                    _properties.Add(scrapedProperty);
                     _propertyLookup.Add(scrapedProperty.PropertyTile);
                     OnCheckNotifyEvent(foundEventArgs);
                 }
             }
+            
+            _writer.WriteAllLines(_properties);
         }
         
         private void OnCheckNotifyEvent(PropertyFoundEventArgs baseEventArgs)

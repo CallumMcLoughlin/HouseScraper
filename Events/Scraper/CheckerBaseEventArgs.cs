@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HouseScraper.Events
+namespace HouseScraper.Events.Scraper
 {
     public abstract class CheckerBaseEventArgs : EventArgs
     {

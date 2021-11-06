@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace HouseScraper.Web
+namespace HouseScraper.Scraper.Web
 {
     public class FileReader : IReader<string[]>
     {

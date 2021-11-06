@@ -1,10 +1,8 @@
 ﻿using System;
-using HouseScraper.Config;
-using HouseScraper.Events;
+using HouseScraper.Events.Scraper;
 using HouseScraper.Scraper.Checker;
 using HouseScraper.Scraper.ScrapeItems;
 using HouseScraper.Scraper.Web;
-using HouseScraper.Web;
 
 namespace HouseScraper
 {
@@ -12,10 +10,10 @@ namespace HouseScraper
     {
         static void Main(string[] args)
         {
-            FileConfig config = ConfigurationManager.Instance.GetConfig<FileConfig>();
-            PropertyChecker checker = new PropertyChecker(new HtmlPropertyScraper(), new FileReader(config.OutputFile));
+            PropertyChecker checker = new PropertyChecker(new HtmlPropertyScraper());
             checker.NewPropertyEvent += OnNewProperty;
             checker.StartRoutine();
+            
             Console.ReadLine();
         }
 

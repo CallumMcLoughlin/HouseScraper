@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using HouseScraper.Config;
 using HouseScraper.Scraper.ScrapeItems;
-using HouseScraper.Web;
 using HtmlAgilityPack;
 
 namespace HouseScraper.Scraper.Web
@@ -41,7 +41,9 @@ namespace HouseScraper.Scraper.Web
             }
             else
             {
-                HtmlDocument document = _htmlViewer.Load(_config.Url);
+                HtmlDocument document = new HtmlDocument();
+                document.LoadHtml(File.ReadAllText("out.txt"));
+                //HtmlDocument document = _htmlViewer.Load(_config.Url);
                 return GetProperties(document);
             }
         }
