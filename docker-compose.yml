@@ -7,4 +7,4 @@ services:
     restart: unless-stopped
     volumes:
       - ./settings.json:/app/net5.0/settings.json
-      - ./data.txt:/app/net5.0/data.txt
+      - ./data.json:/app/net5.0/data.json

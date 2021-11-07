@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using HouseScraper.Config;
-using HouseScraper.Events.Scraper;
-using HouseScraper.Scraper.Output;
+using HouseScraper.Output;
 using HouseScraper.Scraper.ScrapeItems;
 using HouseScraper.Scraper.Web;
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using HouseScraper.Discord;
-using HouseScraper.Events.Scraper;
 using HouseScraper.Scraper.Checker;
 using HouseScraper.Scraper.Web;
 

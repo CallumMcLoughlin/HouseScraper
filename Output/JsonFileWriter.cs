@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using HouseScraper.Scraper.ScrapeItems;
 
-namespace HouseScraper.Scraper.Output
+namespace HouseScraper.Output
 {
     public class JsonFileWriter : IWriter<List<Property>>
     {

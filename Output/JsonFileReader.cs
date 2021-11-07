@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using HouseScraper.Scraper.ScrapeItems;
 
-namespace HouseScraper.Scraper.Output
+namespace HouseScraper.Output
 {
     public class JsonFileReader : IReader<List<Property>>
     {
@@ -28,9 +28,8 @@ namespace HouseScraper.Scraper.Output
                 using JsonDocument document = JsonDocument.Parse(jsonString);
                 properties = document.RootElement.Deserialize<List<Property>>();
             }
-
+            
             return properties;
-
         }
     }
 }

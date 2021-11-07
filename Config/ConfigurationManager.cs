@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using HouseScraper.Events.Config;
 
 namespace HouseScraper.Config
 {

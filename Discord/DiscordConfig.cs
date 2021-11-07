@@ -1,7 +1,8 @@
 using System;
 using System.Text.Json.Serialization;
+using HouseScraper.Config;
 
-namespace HouseScraper.Config
+namespace HouseScraper.Discord
 {
     [Serializable]
     public class DiscordConfig : IConfig

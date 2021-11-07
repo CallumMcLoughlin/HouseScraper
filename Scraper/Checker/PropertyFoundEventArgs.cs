@@ -1,6 +1,6 @@
 ﻿using HouseScraper.Scraper.ScrapeItems;
 
-namespace HouseScraper.Events.Scraper
+namespace HouseScraper.Scraper.Checker
 {
     public class PropertyFoundEventArgs : CheckerBaseEventArgs
     {

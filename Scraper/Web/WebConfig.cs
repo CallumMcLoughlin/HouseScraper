@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using HouseScraper.Config;
 
-namespace HouseScraper.Config
+namespace HouseScraper.Scraper.Web
 {
     [Serializable]
     public class WebConfig : IConfig

@@ -1,4 +1,4 @@
-﻿namespace HouseScraper.Scraper.Output
+﻿namespace HouseScraper.Output
 {
     public interface IReader<out T>
     {

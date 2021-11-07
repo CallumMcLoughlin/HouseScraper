@@ -13,13 +13,13 @@ namespace HouseScraper.Discord
         public event EventHandler<DiscordSocketClient> BotReady;
         
         private readonly DiscordSocketClient _client;
-        private readonly Config.DiscordConfig _config;
+        private readonly DiscordConfig _config;
        
         private ISocketMessageChannel _channel;
         
         public NotificationBot()
         {
-            _config = ConfigurationManager.Instance.GetConfig<Config.DiscordConfig>();
+            _config = ConfigurationManager.Instance.GetConfig<DiscordConfig>();
             _client = new DiscordSocketClient();
             _client.Log += LogAsync;
             _client.Ready += ReadyAsync;
