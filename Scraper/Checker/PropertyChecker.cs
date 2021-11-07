@@ -52,6 +52,8 @@ namespace HouseScraper.Scraper.Checker
 
         protected override void OnLoop()
         {
+            Console.WriteLine($"New Scrape Started {DateTime.Now}");
+            
             List<Property> scrapedProperties = _scraper.Scrape();
             foreach (Property scrapedProperty in scrapedProperties)
             {
