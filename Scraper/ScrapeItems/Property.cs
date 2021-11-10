@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace HouseScraper.Scraper.ScrapeItems
 {
+    /// <summary>
+    /// Property class, contains information about a single property
+    /// </summary>
     [Serializable]
     public class Property : IEquatable<Property>
     {
@@ -25,7 +28,16 @@ namespace HouseScraper.Scraper.ScrapeItems
         public string Cost { get; set; }
 
         public Property() { }
-        
+
+        /// <summary>
+        /// Make new property from stringified values
+        /// </summary>
+        /// <param name="url">Url of property</param>
+        /// <param name="imageUrl">Image url of property</param>
+        /// <param name="title">Title of property</param>
+        /// <param name="bedrooms">Number of bedrooms</param>
+        /// <param name="bathrooms">Number of bathrooms</param>
+        /// <param name="cost">Cost of property</param>
         public Property(string url, string imageUrl, string title, string bedrooms, string bathrooms, string cost)
         {
             Url = url;
@@ -36,6 +48,11 @@ namespace HouseScraper.Scraper.ScrapeItems
             Cost = cost;
         }
 
+        /// <summary>
+        /// Compare two properties
+        /// </summary>
+        /// <param name="other">Other property to compare to</param>
+        /// <returns>True if properties are equal, false otherwise</returns>
         public bool Equals(Property other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -43,6 +60,11 @@ namespace HouseScraper.Scraper.ScrapeItems
             return Url == other.Url && PropertyTile == other.PropertyTile && Bedrooms == other.Bedrooms && Bathrooms == other.Bathrooms && Cost == other.Cost;
         }
 
+        /// <summary>
+        /// Compare two properties
+        /// </summary>
+        /// <param name="obj">Other property to compare to</param>
+        /// <returns>True if properties are equal, false otherwise</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -51,6 +73,10 @@ namespace HouseScraper.Scraper.ScrapeItems
             return Equals((Property) obj);
         }
 
+        /// <summary>
+        /// Get hash of property
+        /// </summary>
+        /// <returns>Hash of property</returns>
         public override int GetHashCode()
         {
             unchecked
