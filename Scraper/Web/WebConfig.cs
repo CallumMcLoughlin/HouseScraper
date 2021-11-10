@@ -4,6 +4,9 @@ using HouseScraper.Config;
 
 namespace HouseScraper.Scraper.Web
 {
+    /// <summary>
+    /// Configuration for websites, defines url to scrape, whether it's pageable, and time between scrapes
+    /// </summary>
     [Serializable]
     public class WebConfig : IConfig
     {
