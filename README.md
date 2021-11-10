@@ -16,6 +16,7 @@ Clone and open the project in your favorite IDE/Editor!
 - .NET 5.0 SDK (For building and deploying)
 - .NET 5.0 Runtime
 - Docker (optional)
+- Docker-compose (optional)
 
 ### Running the Project
 
