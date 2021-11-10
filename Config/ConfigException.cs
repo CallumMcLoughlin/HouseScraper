@@ -2,6 +2,9 @@
 
 namespace HouseScraper.Config
 {
+    /// <summary>
+    /// Exception thrown when a config value is not found or invalid
+    /// </summary>
     [Serializable]
     public class ConfigException : Exception
     {
