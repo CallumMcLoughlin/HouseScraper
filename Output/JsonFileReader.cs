@@ -5,10 +5,17 @@ using HouseScraper.Scraper.ScrapeItems;
 
 namespace HouseScraper.Output
 {
+    /// <summary>
+    /// Read JSON from a file
+    /// </summary>
     public class JsonFileReader : IReader<List<Property>>
     {
         private readonly string _filepath;
         
+        /// <summary>
+        /// Constructor, sets and optionally creates file to read from
+        /// </summary>
+        /// <param name="filepath"></param>
         public JsonFileReader(string filepath)
         {
             _filepath = filepath;
@@ -18,6 +25,10 @@ namespace HouseScraper.Output
             }
         }
         
+        /// <summary>
+        /// Read all JSON lines from file
+        /// </summary>
+        /// <returns>List of property objects</returns>
         public List<Property> ReadAllLines()
         {
             List<Property> properties = new List<Property>();
