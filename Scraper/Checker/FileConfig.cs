@@ -4,6 +4,9 @@ using HouseScraper.Config;
 
 namespace HouseScraper.Scraper.Checker
 {
+    /// <summary>
+    /// Configuration for output file for checkers
+    /// </summary>
     [Serializable]
     public class FileConfig : IConfig
     {

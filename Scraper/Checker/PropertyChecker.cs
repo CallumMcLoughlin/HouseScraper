@@ -8,8 +8,14 @@ using HouseScraper.Scraper.Web;
 
 namespace HouseScraper.Scraper.Checker
 {
+    /// <summary>
+    /// Checker for checking for new properties
+    /// </summary>
     public class PropertyChecker : AbstractChecker
     {
+        /// <summary>
+        /// New property found event, fired whenever a new property is found
+        /// </summary>
         public event EventHandler<PropertyFoundEventArgs> NewPropertyEvent;
         private Timer _eventTimer;
         
@@ -22,7 +28,11 @@ namespace HouseScraper.Scraper.Checker
 
         private readonly List<Property> _properties = new List<Property>();
         private readonly HashSet<string> _propertyLookup = new HashSet<string>();
-        
+
+        /// <summary>
+        /// Constructor, initializes what type of scraper to use
+        /// </summary>
+        /// <param name="propertyScraper"></param>
         public PropertyChecker(IScraper<List<Property>> propertyScraper)
         {
             _scraper = propertyScraper;
@@ -32,6 +42,9 @@ namespace HouseScraper.Scraper.Checker
             Initialize();
         }
 
+        /// <summary>
+        /// Read from reader all found properties
+        /// </summary>
         private void Initialize()
         {
             _properties.AddRange(_reader.ReadAllLines());
@@ -42,6 +55,9 @@ namespace HouseScraper.Scraper.Checker
             }
         }
 
+        /// <summary>
+        /// Start property check routine
+        /// </summary>
         public override void StartRoutine()
         {
             _eventTimer = new Timer(e =>
@@ -50,6 +66,9 @@ namespace HouseScraper.Scraper.Checker
             }, null, TimeSpan.Zero, TimeSpan.FromSeconds(_webConfig.Polltime));
         }
 
+        /// <summary>
+        /// Loop to check for new properties
+        /// </summary>
         protected override void OnLoop()
         {
             Console.WriteLine($"New Scrape Started {DateTime.Now}");
@@ -71,12 +90,19 @@ namespace HouseScraper.Scraper.Checker
             
             _writer.WriteAllLines(_properties);
         }
-        
+
+        /// <summary>
+        /// When a new property is found, emit event with property
+        /// </summary>
+        /// <param name="baseEventArgs">PropertyFoundEvent with found property</param>
         private void OnCheckNotifyEvent(PropertyFoundEventArgs baseEventArgs)
         {
             NewPropertyEvent?.Invoke(this, baseEventArgs);
         }
 
+        /// <summary>
+        /// Stop check routine
+        /// </summary>
         public override void StopRoutine()
         {
             _eventTimer.Dispose();
