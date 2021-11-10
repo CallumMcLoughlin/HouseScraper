@@ -8,15 +8,24 @@ using HouseScraper.Scraper.ScrapeItems;
 
 namespace HouseScraper.Discord
 {
+    /// <summary>
+    /// Handle sending notifications to a Discord channel and server
+    /// </summary>
     public class NotificationBot
     {
+        /// <summary>
+        /// Event raised when bot is ready to be used
+        /// </summary>
         public event EventHandler<DiscordSocketClient> BotReady;
         
         private readonly DiscordSocketClient _client;
         private readonly DiscordConfig _config;
        
         private ISocketMessageChannel _channel;
-        
+
+        /// <summary>
+        /// Constructor for Discord bot, reads config and logs in
+        /// </summary>
         public NotificationBot()
         {
             _config = ConfigurationManager.Instance.GetConfig<DiscordConfig>();
@@ -25,6 +34,10 @@ namespace HouseScraper.Discord
             _client.Ready += ReadyAsync;
         }
 
+        /// <summary>
+        /// Run the bot
+        /// </summary>
+        /// <returns></returns>
         public async Task RunAsync()
         {
             Console.WriteLine("Starting up...");
@@ -34,12 +47,21 @@ namespace HouseScraper.Discord
             await Task.Delay(Timeout.Infinite);
         }
         
+        /// <summary>
+        /// Log bot events
+        /// </summary>
+        /// <param name="log">Message to be logged</param>
+        /// <returns></returns>
         private Task LogAsync(LogMessage log)
         {
             Console.WriteLine(log.ToString());
             return Task.CompletedTask;
         }
         
+        /// <summary>
+        /// On bot ready, sets up channel and emits BotReady event
+        /// </summary>
+        /// <returns></returns>
         private Task ReadyAsync()
         {
             Console.WriteLine($"{_client.CurrentUser} is connected!");
@@ -49,6 +71,11 @@ namespace HouseScraper.Discord
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Send property to Discord channel
+        /// </summary>
+        /// <param name="property">Property to send</param>
+        /// <returns></returns>
         public async Task SendProperty(Property property)
         {
             EmbedBuilder message = new EmbedBuilder()
